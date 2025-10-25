@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Login Page */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-container h1 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+#loginForm {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 300px;
+}
+
+#loginForm input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#loginForm button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#loginForm button[type="submit"] {
+    background: #667eea;
+    color: white;
+}
+
+#registerBtn {
+    background: #764ba2;
+    color: white;
+}
+
+/* Dashboard */
+nav {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#logoutBtn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dashboard {
+    padding: 20px;
+}
+
+.tool-panel {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tool-btn {
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tool-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+.tool {
+    display: none;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tool.active {
+    display: block;
+}
+
+/* Drawing Board */
+.notebook-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#notebookSelect {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.board-controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.board-controls button, .notebook-header button {
+    padding: 8px 16px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pageInfo {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.canvas-container {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#drawingBoard {
+    cursor: crosshair;
+    display: block;
+    background: white;
+}
+
+#convertedText {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 50px;
+    border: 1px solid #ddd;
+}
+
+/* Notes */
+.notes-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#noteTitle {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#saveNote, #uploadPdfBtn, #saveToDriveBtn {
+    padding: 8px 16px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#saveToDriveBtn {
+    background: #4285f4;
+}
+
+#uploadStatus {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+#uploadStatus.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+#uploadStatus.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+.pdf-item {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pdf-name {
+    font-weight: bold;
+    color: #1976d2;
+    cursor: pointer;
+}
+
+.pdf-name:hover {
+    text-decoration: underline;
+}
+
+#pdfViewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+}
+
+.pdf-controls {
+    background: #667eea;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#closePdf {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#noteContent {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+.note-item {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border-left: 4px solid #667eea;
+}
+
+.note-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Calculator */
+.calculator {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#calcDisplay {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.calc-buttons button {
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: background 0.2s;
+}
+
+.calc-buttons button:hover {
+    background: #e9ecef;
+}
+
+.equals {
+    background: #667eea !important;
+    color: white !important;
+    grid-row: span 2;
+}
+
+.zero {
+    grid-column: span 2;
+}

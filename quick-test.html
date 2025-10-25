@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Login Test</title>
+</head>
+<body>
+    <h1>Quick Login Test</h1>
+    
+    <h3>1. Register User</h3>
+    <button onclick="testRegister()">Register Test User</button>
+    
+    <h3>2. Login User</h3>
+    <button onclick="testLogin()">Login Test User</button>
+    
+    <h3>3. Check Server</h3>
+    <button onclick="checkServer()">Check Server Health</button>
+    
+    <div id="output" style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;"></div>
+
+    <script>
+        function log(message) {
+            document.getElementById('output').innerHTML += message + '<br>';
+        }
+        
+        function clearLog() {
+            document.getElementById('output').innerHTML = '';
+        }
+        
+        async function testRegister() {
+            clearLog();
+            log('Testing registration...');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: 'testuser',
+                        email: 'test@example.com',
+                        password: '123456'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    log('✅ Registration SUCCESS');
+                    log('User ID: ' + data.user.id);
+                    log('Token: ' + data.token.substring(0, 20) + '...');
+                } else {
+                    log('❌ Registration FAILED: ' + data.error);
+                }
+            } catch (error) {
+                log('❌ Network Error: ' + error.message);
+            }
+        }
+        
+        async function testLogin() {
+            clearLog();
+            log('Testing login...');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'test@example.com',
+                        password: '123456'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    log('✅ Login SUCCESS');
+                    log('Username: ' + data.user.username);
+                    log('Token: ' + data.token.substring(0, 20) + '...');
+                } else {
+                    log('❌ Login FAILED: ' + data.error);
+                }
+            } catch (error) {
+                log('❌ Network Error: ' + error.message);
+            }
+        }
+        
+        async function checkServer() {
+            clearLog();
+            log('Checking server...');
+            
+            try {
+                const response = await fetch('http://localhost:3000/health');
+                const data = await response.json();
+                
+                log('✅ Server is running');
+                log('Status: ' + data.status);
+                log('Users count: ' + data.users);
+            } catch (error) {
+                log('❌ Server not responding: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

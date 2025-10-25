@@ -1,0 +1,6 @@
+@echo off
+echo Testing Backend Server...
+cd backend
+echo.
+echo Starting server (Ctrl+C to stop)...
+node src/server.js

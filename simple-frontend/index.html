@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlus - Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <h1>Starlus Learning Platform</h1>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <button type="button" id="registerBtn">Register</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="page">
+        <nav>
+            <h2>Welcome, <span id="userDisplay"></span></h2>
+            <button id="logoutBtn">Logout</button>
+        </nav>
+        
+        <div class="dashboard">
+            <div class="tool-panel">
+                <button class="tool-btn active" data-tool="board">Writing Board</button>
+                <button class="tool-btn" data-tool="notes">Notes</button>
+                <button class="tool-btn" data-tool="calculator">Calculator</button>
+            </div>
+
+            <div id="boardTool" class="tool active">
+                <div class="notebook-controls">
+                    <select id="notebookSelect">
+                        <option value="">Select Notebook</option>
+                    </select>
+                    <button id="newNotebook">New Notebook</button>
+                </div>
+                <div class="board-controls">
+                    <button id="clearBoard">Clear</button>
+                    <button id="convertText">Convert to Text</button>
+                    <button id="startSpeech">🎤 Speech to Text</button>
+                </div>
+                <canvas id="drawingBoard" width="800" height="400"></canvas>
+                <div id="convertedText"></div>
+            </div>
+
+            <div id="notesTool" class="tool">
+                <div class="notes-controls">
+                    <input type="text" id="noteTitle" placeholder="Note title">
+                    <button id="saveNote">Save Note</button>
+                    <input type="file" id="pdfUpload" accept=".pdf" style="display: none;">
+                    <button id="uploadPdfBtn">📄 Upload PDF</button>
+                </div>
+                <textarea id="noteContent" placeholder="Write your notes here..."></textarea>
+                <div id="notesList"></div>
+                <div id="pdfViewer" style="display: none;">
+                    <div class="pdf-controls">
+                        <button id="closePdf">Close PDF</button>
+                        <span id="pdfTitle"></span>
+                    </div>
+                    <iframe id="pdfFrame" width="100%" height="600px"></iframe>
+                </div>
+            </div>
+
+            <div id="calculatorTool" class="tool">
+                <div class="calculator">
+                    <input type="text" id="calcDisplay" readonly>
+                    <div class="calc-buttons">
+                        <button onclick="clearCalc()">C</button>
+                        <button onclick="appendCalc('/')">/</button>
+                        <button onclick="appendCalc('*')">*</button>
+                        <button onclick="deleteLast()">⌫</button>
+                        <button onclick="appendCalc('7')">7</button>
+                        <button onclick="appendCalc('8')">8</button>
+                        <button onclick="appendCalc('9')">9</button>
+                        <button onclick="appendCalc('-')">-</button>
+                        <button onclick="appendCalc('4')">4</button>
+                        <button onclick="appendCalc('5')">5</button>
+                        <button onclick="appendCalc('6')">6</button>
+                        <button onclick="appendCalc('+')">+</button>
+                        <button onclick="appendCalc('1')">1</button>
+                        <button onclick="appendCalc('2')">2</button>
+                        <button onclick="appendCalc('3')">3</button>
+                        <button onclick="calculate()" class="equals">=</button>
+                        <button onclick="appendCalc('0')" class="zero">0</button>
+                        <button onclick="appendCalc('.')">.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
